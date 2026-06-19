@@ -60,5 +60,3 @@ For the **GitHub repository description** (the short text below the repository n
 
 > 📚 A Django-based Bookstore Management System for managing books, inventory, customers, and orders with an intuitive web interface.
 
-## Tags
-#Django #Python #BookstoreManagementSystem #WebDevelopment #FullStackDevelopment #HTML #CSS #JavaScript #SQLite #MySQL #DatabaseManagement #CRUD #OpenSource #GitHubProjects #SoftwareDevelopment #StudentProject #PythonProjects #DjangoProject #WebApp #Programming
