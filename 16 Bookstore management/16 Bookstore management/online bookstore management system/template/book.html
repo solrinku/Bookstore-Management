@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<style>
+    .book-list {
+        padding: 20px 0;
+        background-color: #fff;
+    }
+
+    .book-list h2 {
+        text-align: center;
+    }
+
+    .books {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+    }
+
+    .book {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+    }
+
+    .book img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .book button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .book button:hover {
+        background-color: #45a049;
+    }
+    .book-list{
+        width:70%;
+        margin-left:50px;
+    }
+    .submitForm {
+        width: 100%;
+        z-index: 1;
+        margin-top: 30px;
+        color: #080710;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 5px;
+        position: relative;
+        background: skyblue;
+    }
+    .submitForm::before {
+        content: "";
+        top: 0%;
+        left: -100%;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        border-radius: 5px;
+        position: absolute;
+        transition: left 0.4s, color 0.4s;
+        background-color: #202020;
+    }
+    .submitForm:hover {
+        color: #fff;
+    }
+    .submitForm:hover::before {
+        left: 0%;
+    }
+    a{
+        text-decoration:none;
+        color:#fff;
+    }
+</style>
+
+<section class="book-list">
+    <div class="container">
+        <h2>Featured Books</h2>
+        <div class="books">
+            {% if books %}
+                {% for book in books %}
+                <div class="book">
+                    <img style="height: 200px;" src="{{book.image.url}}" alt="Book 1">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.author_name}}</p>
+                    <p>${{book.price}}</p>
+                    {% if user.is_staff %}
+                    {% else %}
+                    <button  class="submitForm"><a href="{% url 'addcart' pk=book.id %}">Buy</a></button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>NO Record</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

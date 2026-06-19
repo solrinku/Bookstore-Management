@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<style>
+    .book-list {
+        padding: 20px 0;
+        background-color: #fff;
+    }
+
+    .book-list h2 {
+        text-align: center;
+    }
+
+    .books {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+    }
+
+    .book {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+    }
+
+    .book img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .book button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .book button:hover {
+        background-color: #45a049;
+    }
+    .book-list{
+        width:70%;
+        margin-left:90px;
+    }
+</style>
+<section class="book-list">
+    <div class="container">
+        <h2>Buyed Books</h2>
+        <div class="books">
+            {% if Cart %}
+                {% for cart in Cart %}
+                <div class="book">
+                    <img style="height: 200px;" src="{{cart.book.image.url}}" alt="Book">
+                    <h3>{{cart.book.title}}</h3>
+                    <p>{{cart.book.author_name}}</p>
+                    <p>${{cart.book.price}}</p>
+                    <a href="{{cart.book.pdf.url}}">Read</a>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>NO Record</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
